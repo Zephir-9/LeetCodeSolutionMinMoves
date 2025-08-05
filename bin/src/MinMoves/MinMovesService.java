@@ -1,10 +1,23 @@
 package MinMoves;
 import java.util.Arrays;
-import java.util.OptionalDouble;
 
 public class MinMovesService {
     public static int minMoves2(int[] nums) {
-        OptionalDouble nums_avg = Arrays.stream(nums).average();
-        return 1;
+        Arrays.sort(nums);
+
+        int median;
+        int n = nums.length;
+        if (n % 2 == 0) {
+            median = nums[n / 2 - 1];
+        } else {
+            median = nums[n / 2];
+        } //В поисках медианы
+
+        int moves = 0;
+        for (int num : nums) {
+            moves += Math.abs(num - median);
+        } //В поисках количества шагов
+
+        return moves;
     }
 }
